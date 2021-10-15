@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import { numbers, upperCaseLetters, lowerCaseLetters, specialSymbols } from './symbols';
+import { Message } from './Messages';
+import { NOTHING_TO_COPY, SELECT_OPTION } from './messageText';
+import { generateSymbolsList, generatePassword, copyToClipboard } from './utils';
 
 function App() {
   const [password, setPassword] = useState('');
@@ -9,34 +11,27 @@ function App() {
   const [LowerCase, setLowerCase] = useState(false);
   const [Numbers, setNumbers] = useState(false);
   const [Symbols, setSymbols] = useState(false);
+  const [message, setMes] = useState(false);
 
-  const handleGeneratePassword = (e) => {
-    let symbolsList = '';
-    if (UpperCase) {
-      symbolsList += upperCaseLetters
+  const handleGeneratePassword = () => {
+    let symbolsList = generateSymbolsList({ UpperCase, LowerCase, Numbers, Symbols });
+    if (symbolsList === '') {
+      setMes(SELECT_OPTION)
+    } else {
+      setMes(false)
     }
-    if (LowerCase) {
-      symbolsList += lowerCaseLetters
-    }
-    if (Numbers) {
-      symbolsList += numbers
-    }
-    if (Symbols) {
-      symbolsList += specialSymbols
-    }
-    setPassword(generatePasswod(symbolsList))
+    setPassword(generatePassword(symbolsList, passwordLength))
   }
 
-  const generatePasswod = (symbolsList) => {
-    let password = '';
-    const lengthSymbolsList = symbolsList.length;
-
-    for (let i = 0; i < passwordLength; i++) {
-      const index = Math.round(Math.random() * lengthSymbolsList);
-      password += symbolsList.charAt(index)
+  const handleCopyPassword = () => {
+    if (password === '') {
+      setMes(NOTHING_TO_COPY)
+    } else {
+      copyToClipboard(password)
+      setMes(false);
     }
-    return password
   }
+
   return (
     <div className="App">
       <section className='section'>
@@ -44,7 +39,7 @@ function App() {
           <h1 className='title'>Password Generator</h1>
           <div className='output-password'>
             <h3>{password}</h3>
-            <button className='copy-btn'>Copy</button>
+            <button onClick={handleCopyPassword} className='copy-btn'>Copy</button>
           </div>
 
           <div className='specification'>
@@ -85,6 +80,7 @@ function App() {
           <button onClick={handleGeneratePassword} className='generate-btn'>Generate Password</button>
 
         </div>
+        <Message textMessage={message} />
       </section>
     </div>
   );
