@@ -38,7 +38,7 @@ function App() {
         <div className='container'>
           <h1 className='title'>Password Generator</h1>
           <div className='output-password'>
-            <h3>{password}</h3>
+            <h3 id='password'>{password}</h3>
             <button onClick={handleCopyPassword} className='copy-btn'>Copy</button>
           </div>
 
