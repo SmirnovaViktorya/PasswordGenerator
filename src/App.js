@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Message } from './Messages';
-import { NOTHING_TO_COPY, SELECT_OPTION } from './messageText';
+import { NOTHING_TO_COPY, SELECT_OPTION, COPY_SUCCESSFUL } from './messageText';
 import { generateSymbolsList, generatePassword, copyToClipboard } from './utils';
 
 function App() {
@@ -28,8 +28,9 @@ function App() {
       setMes(NOTHING_TO_COPY)
     } else {
       copyToClipboard(password)
-      setMes(false);
+      setMes(COPY_SUCCESSFUL);
     }
+    setTimeout(() => setMes(false), 1500);
   }
 
   return (
