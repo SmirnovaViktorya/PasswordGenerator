@@ -19,8 +19,7 @@ export function generateSymbolsList({ UpperCase, LowerCase, Numbers, Symbols }) 
 
 export function generatePassword(symbolsList, passwordLength) {
     let password = '';
-    const lengthSymbolsList = symbolsList.length;
-
+    const lengthSymbolsList = symbolsList.length - 1;
     for (let i = 0; i < passwordLength; i++) {
         const index = Math.round(Math.random() * lengthSymbolsList);
         password += symbolsList.charAt(index)
