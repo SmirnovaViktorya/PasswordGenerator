@@ -107,6 +107,7 @@
 
   .section {
     background: rgb(255, 132, 210);
+    padding-top: 0;
   }
 
   .container {
