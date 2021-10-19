@@ -4,12 +4,14 @@
 }
 
 .section {
-  width: 500px;
   margin: 0 auto;
   padding-top: 50px;
 }
 
 .container {
+  margin: 0 auto;
+  width: 30%;
+  min-width: 500px;
   background: rgb(255, 132, 210);
   border-radius: 15px;
   padding: 30px;
@@ -78,6 +80,7 @@
 .specification {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   color: #fff;
   margin-bottom: 15px;
   font-size: 18px;
@@ -95,4 +98,38 @@
   color: rgb(82, 82, 253);
   border: 1px solid rgb(82, 82, 253);
   border-radius: 3px;
+}
+
+@media (max-width: 500px) {
+  .App {
+    background: rgb(255, 132, 210);
+  }
+
+  .section {
+    background: rgb(255, 132, 210);
+  }
+
+  .container {
+    width: 100%;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 390px) {
+  .displayFlex {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+
+  .passLength {
+    margin: 0 auto;
+  }
+
+  .range {
+    width: 80%;
+  }
 }

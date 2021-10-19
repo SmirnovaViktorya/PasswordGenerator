@@ -44,10 +44,10 @@ function App() {
           </div>
 
           <div className='specification'>
-            <label htmlFor='password-length'>Password Length</label>
+            <label htmlFor='password-length ' className="passLength">Password Length</label>
             <div className='displayFlex'>
               <p className='passwordLengthValue'>{passwordLength}</p>
-              <input defaultValue={passwordLength}
+              <input defaultValue={passwordLength} className='range'
                 onChange={(e) => setPasswordLength(e.target.value)}
                 type='range' id='password-length' max='15' min='5' />
             </div>
